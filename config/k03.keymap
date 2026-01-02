@@ -5,6 +5,20 @@
 #include <dt-bindings/zmk/outputs.h>
 
 / {
+    // -----------------------
+    // Unicode aliases
+    // -----------------------
+    unicode {
+        UC_LBKT   = <0x005B>; // [
+        UC_RBKT   = <0x005D>; // ]
+        UC_LBRACE = <0x007B>; // {
+        UC_RBRACE = <0x007D>; // }
+        UC_LPAREN = <0x0028>; // (
+        UC_RPAREN = <0x0029>; // )
+        UC_UNDER  = <0x005F>; // _
+        UC_GRAVE  = <0x0060>; // `
+    };
+
     behaviors {
         enc_vol: enc_vol {
             compatible = "zmk,behavior-sensor-rotate";
@@ -17,12 +31,15 @@
     keymap {
         compatible = "zmk,keymap";
 
+        // -----------------------
+        // Base Layer
+        // -----------------------
         base {
             bindings = <
 &kp ESC         &kp N1  &kp N2    &kp N3    &kp N4        &kp N5                              &kp N6  &kp N7     &kp N8     &kp N9    &kp N0    &kp BSPC
 &kp TAB         &kp Q   &kp W     &kp E     &kp R         &kp T                               &kp Y   &kp U      &kp I      &kp O     &kp P     &kp BSLH
 &kp LEFT_SHIFT  &kp A   &kp S     &kp D     &kp F         &kp G                               &kp H   &kp J      &kp K      &kp L     &kp SEMI  &kp SQT
-&kp RCTRL       &kp Z   &kp X     &kp C     &kp V         &kp B       &kp LBKT     &kp RBKT   &kp N   &kp M      &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
+&kp RCTRL       &kp Z   &kp X     &kp C     &kp V         &kp B       &unicode UC_LBKT   &unicode UC_RBKT   &kp N   &kp M      &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
                         &kp LGUI  &kp LALT  &kp LEFT_GUI  &lt 1 CAPS  &kp SPACE    &kp ENTER  &mo 2   &kp RCTRL  &kp RALT   &kp RGUI
             >;
 
@@ -36,26 +53,35 @@
                 <&enc_vol>;
         };
 
+        // -----------------------
+        // Lower Layer
+        // -----------------------
         lower {
             bindings = <
 &trans  &trans  &trans    &trans       &trans         &trans                                  &trans                 &trans  &trans  &trans            &trans             &trans
-&trans  &trans  &trans    &trans       &trans         &kp LEFT_BRACE                          &kp RIGHT_PARENTHESIS  &trans  &trans  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &trans
-&trans  &trans  &trans    &trans       &kp UNDER      &kp LEFT_PARENTHESIS                    &trans                 &trans  &trans  &trans            &trans             &trans
+&trans  &trans  &trans    &trans       &trans         &unicode UC_LBRACE                         &unicode UC_RPAREN     &trans  &trans  &unicode UC_LBKT  &unicode UC_RBKT  &trans
+&trans  &trans  &trans    &trans       &unicode UC_UNDER &unicode UC_LPAREN                        &trans                 &trans  &trans  &trans            &trans             &trans
 &trans  &trans  &kp HOME  &kp PAGE_UP  &kp PAGE_DOWN  &kp END               &trans    &trans  &trans                 &trans  &trans  &trans            &trans             &trans
                 &trans    &trans       &trans         &trans                &trans    &trans  &mo 3                  &trans  &trans  &trans
             >;
         };
 
+        // -----------------------
+        // Raise Layer
+        // -----------------------
         raise {
             bindings = <
 &kp F1  &kp F2  &kp F3  &kp F4                &kp F5                 &kp F6                       &kp F7             &kp F8           &kp F9    &kp F10    &kp F11   &kp F12
-&trans  &trans  &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &trans                       &kp K_MUTE         &kp K_VOLUME_UP  &kp UP    &kp LBKT   &kp RBKT  &trans
-&trans  &trans  &trans  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp GRAVE                    &kp K_VOLUME_DOWN  &kp LEFT         &kp DOWN  &kp RIGHT  &trans    &trans
+&trans  &trans  &trans  &unicode UC_LPAREN  &unicode UC_RPAREN  &trans                       &kp K_MUTE         &kp K_VOLUME_UP  &kp UP    &unicode UC_LBKT   &unicode UC_RBKT  &trans
+&trans  &trans  &trans  &unicode UC_LBKT      &unicode UC_RBKT      &unicode UC_GRAVE                    &K_VOLUME_DOWN  &kp LEFT         &kp DOWN  &kp RIGHT  &trans    &trans
 &trans  &trans  &trans  &trans                &trans                 &trans     &trans    &trans  &trans             &trans           &trans    &trans     &trans    &trans
                 &trans  &trans                &trans                 &mo 3      &trans    &trans  &trans             &trans           &trans    &trans
             >;
         };
 
+        // -----------------------
+        // Adjust Layer
+        // -----------------------
         adj {
             bindings = <
 &bootloader  &trans  &trans  &trans  &trans  &trans                    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2      &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR_ALL
