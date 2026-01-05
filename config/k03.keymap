@@ -65,7 +65,7 @@
 &trans  &trans  &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &trans                       &kp K_MUTE         &kp K_VOLUME_UP  &kp UP    &kp LS(LG(LBKT))  &kp LS(LG(RBKT))  &trans
 &trans  &trans  &trans  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp GRAVE                    &kp K_VOLUME_DOWN  &kp LEFT         &kp DOWN  &kp RIGHT         &trans            &trans
 &trans  &trans  &trans  &trans                &trans                 &trans     &trans    &trans  &trans             &trans           &trans    &trans            &trans            &trans
-                &trans  &trans                &trans                 &mo 3      &trans    &trans  &trans             &trans           &trans    &trans
+                &trans  &trans                &trans                 &trans     &mo 3     &trans  &trans             &trans           &trans    &trans
             >;
         };
 
